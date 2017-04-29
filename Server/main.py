@@ -38,7 +38,7 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             response = urllib.urlopen(url_for)
             data = json.loads(response.read())
             output_data['phrase_32char'] = data['forecasts'][0]['phrase_32char']
-
+            
             output_data['Chlorophyll'] = getColor(float(input_data['lat']),float(input_data['long']))
 
             print '=============='
