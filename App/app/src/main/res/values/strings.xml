@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Beach Trip Helper</string>
+    <string name="title_activity_location_select">Select a beach</string>
+    <string name="select_location">select this location</string>
+    <string name="no_data">沒有資料</string>
+    <string name="low_moderate">適合出遊</string>
+    <string name="high">注意防曬</string>
+    <string name="veryhigh">不建議出遊</string>
+    <string name="extreme">不建議出遊</string>
+    <string name="sun_protection_low">帽子/陽傘</string>
+    <string name="sun_protection_moderate">帽子/陽傘\n防曬乳液\n太陽眼鏡</string>
+    <string name="sun_protection_high">帽子/陽傘\n防曬乳液\n太陽眼鏡\n待在陰影處\n長袖衣物</string>
+    <string name="sun_protection_veryhigh">帽子/陽傘\n防曬乳液\n太陽眼鏡\n待在陰影處\n長袖衣物</string>
+    <string name="sun_protection_extreme">帽子/陽傘\n防曬乳液\n太陽眼鏡\n待在陰影處\n長袖衣物\n不建議10am~4pm出門</string>
+    <string name="rain">正在下雨</string>
+    <string name="willrain">即將下雨</string>
+</resources>
