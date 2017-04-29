@@ -22,7 +22,9 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.regex.Matcher;
@@ -60,6 +62,7 @@ public class InfoActivity extends AppCompatActivity {
     private TextView chlorophyll_text;
     private TextView uv_info;
     private TextView about;
+    private TextView sunburn_info;
 
     private ImageView share;
     private ImageView weather_icon;
@@ -84,12 +87,13 @@ public class InfoActivity extends AppCompatActivity {
             }
         });
         uv_value = (TextView) findViewById(R.id.uv_value);
-        sum_protection = (TextView) findViewById(R.id.sum_protection);
+        sum_protection = (TextView) findViewById(R.id.sun_protection);
         temp_value = (TextView) findViewById(R.id.temp_value);
         go_beach = (TextView) findViewById(R.id.go_beach);
         weather_header = (TextView) findViewById(R.id.weather_header);
         weather_value = (TextView) findViewById(R.id.weather_value);
         chlorophyll_text = (TextView) findViewById(R.id.chlorophyll_text);
+        sunburn_info = (TextView) findViewById(R.id.sunburn_info);
         uv_info = (TextView) findViewById(R.id.uv_info);
         uv_info.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -181,6 +185,11 @@ public class InfoActivity extends AppCompatActivity {
         boolean outside = true;
         uv_value.setText(uv_desc);
         temp_value.setText(temp + "");
+        int hour = new GregorianCalendar().get(Calendar.HOUR_OF_DAY);
+        if (hour >= 12 && hour <= 14)
+            sunburn_info.setVisibility(View.VISIBLE);
+        else
+            sunburn_info.setVisibility(View.GONE);
 
         if ("Low".equals(uv_desc)) {
             go_beach.setText(R.string.low_moderate);

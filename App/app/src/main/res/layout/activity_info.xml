@@ -209,6 +209,18 @@
                 android:visibility="gone" />
 
             <TextView
+                android:id="@+id/sunburn_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="3dp"
+                android:paddingTop="3dp"
+                android:text="提醒：在中午到下午\n兩點曬15分鐘，相當\n於兩點至五點間曬45\n分鐘"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <TextView
                 android:id="@+id/weather_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -241,7 +253,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/sum_protection"
+                android:id="@+id/sun_protection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="3dp"
