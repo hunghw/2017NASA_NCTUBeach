@@ -1,10 +1,14 @@
 package nctu.nasa.gotobeach;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -57,6 +61,7 @@ public class InfoActivity extends AppCompatActivity {
     private TextView uv_info;
     private TextView about;
 
+    private ImageView share;
     private ImageView weather_icon;
     private ImageView weather_next_icon;
     private ImageView willweather_icon;
@@ -103,6 +108,13 @@ public class InfoActivity extends AppCompatActivity {
         weather_icon = (ImageView) findViewById(R.id.weather_icon);
         weather_next_icon = (ImageView) findViewById(R.id.weather_next_icon);
         willweather_icon = (ImageView) findViewById(R.id.willweather_icon);
+        share = (ImageView) findViewById(R.id.share);
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                takeScreenshot();
+            }
+        });
 
         location_name.setText(name);
 
@@ -335,9 +347,21 @@ public class InfoActivity extends AppCompatActivity {
                 .show();
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            takeScreenshot();
+        }
+    }
+
     private void takeScreenshot() {
         Date now = new Date();
         android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+            return;
+        }
 
         try {
             // image naming and path  to include sd card  appending name you choose for file
@@ -365,10 +389,13 @@ public class InfoActivity extends AppCompatActivity {
     }
 
     private void openScreenshot(File imageFile) {
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
+        Intent shareIntent = new Intent();
         Uri uri = Uri.fromFile(imageFile);
-        intent.setDataAndType(uri, "image/*");
-        startActivity(intent);
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, name + "\n\n#BeachTripHelper\n#NASAHackthon");
+        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        shareIntent.setType("image/jpeg");
+        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        startActivity(Intent.createChooser(shareIntent, "分享"));
     }
 }

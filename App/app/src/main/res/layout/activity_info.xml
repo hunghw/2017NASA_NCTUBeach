@@ -20,6 +20,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="13dp"
+        android:layout_marginRight="50dp"
         android:layout_marginStart="13dp"
         android:layout_marginTop="13dp"
         android:layout_weight="1"
@@ -273,5 +274,14 @@
                 android:textSize="14sp" />
         </LinearLayout>
     </ScrollView>
+
+    <ImageView
+        android:id="@+id/share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_share"
+        android:layout_alignTop="@+id/location_name"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="14dp" />
 
 </RelativeLayout>
