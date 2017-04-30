@@ -28,18 +28,38 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 
             url_obs = 'https://bde75dae-f931-4098-8c54-1113ac61bc24:pTdEQXXoOS@twcservice.mybluemix.net:443/api/weather/v1/geocode/' + input_data['lat'] + '/' + input_data['long'] + '/observations.json?units=m&language=en-US'
             url_for = 'https://bde75dae-f931-4098-8c54-1113ac61bc24:pTdEQXXoOS@twcservice.mybluemix.net:443/api/weather/v1/geocode/' + input_data['lat'] + '/' + input_data['long'] + '/forecast/hourly/48hour.json?units=m&language=en-US'
+            url_tides = 'https://www.worldtides.info/api?extremes&lat=' + input_data['lat'] + '&lon=' + input_data['long'] + '&key=4aba06ce-7cb1-4020-91dc-e6f41eebcb28'
             print url_obs
             print url_for
+            print url_tides
             response = urllib.urlopen(url_obs)
             data = json.loads(response.read())
             output_data['uv_desc'] = data['observation']['uv_desc']
             output_data['temp'] = data['observation']['temp']
             output_data['wx_phrase'] = data['observation']['wx_phrase']
+            
             response = urllib.urlopen(url_for)
             data = json.loads(response.read())
             output_data['phrase_32char'] = data['forecasts'][0]['phrase_32char']
             
             output_data['Chlorophyll'] = getColor(float(input_data['lat']),float(input_data['long']))
+
+            response = urllib.urlopen(url_tides)
+            data = json.loads(response.read())
+            pos = 86400
+            neg = -86400
+            for i in data['extremes']:
+                diff = i['dt'] - time.time()
+                if diff >= 0:
+                    if diff<pos:
+                        pos = diff
+                        output_data[i['type']] = i['dt']
+                else:
+                    if diff>neg:
+                        neg = diff
+                        output_data[i['type']] = i['dt']
+
+
 
             print '=============='
             print output_data
