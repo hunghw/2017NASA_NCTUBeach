@@ -5,3 +5,4 @@ ssh nctubeach@52.168.28.84
 https://portal.azure.com/
 
 https://oceancolor.gsfc.nasa.gov/cgi/l3?ctg=Standard&sen=A&prd=CHL_chlor_a.nc&per=DAY&date=5Apr2017&res=4km&num=24
+https://console.ng.bluemix.net/catalog/services/weather-company-data/
