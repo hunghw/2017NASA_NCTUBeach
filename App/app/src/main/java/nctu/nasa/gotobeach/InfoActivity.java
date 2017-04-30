@@ -1,6 +1,7 @@
 package nctu.nasa.gotobeach;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -406,5 +407,21 @@ public class InfoActivity extends AppCompatActivity {
         shareIntent.setType("image/jpeg");
         shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         startActivity(Intent.createChooser(shareIntent, "分享"));
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("確定要離開?")
+                .setPositiveButton("是", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+
+                })
+                .setNegativeButton("否", null)
+                .show();
     }
 }
