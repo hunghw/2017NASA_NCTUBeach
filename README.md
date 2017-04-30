@@ -9,3 +9,4 @@ Let's go to the Beach!
 
 http://spaceappstaiwan.americancorner.org.tw/3900621029-2232029699332872510520497-the-earth-and-us.html
 https://2017.spaceappschallenge.org/challenges/earth-and-us/lets-go-beach/details
+https://2017.spaceappschallenge.org/challenges/earth-and-us/lets-go-beach/teams/nctubeach/project
