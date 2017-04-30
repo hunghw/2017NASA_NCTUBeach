@@ -52,6 +52,8 @@ public class InfoActivity extends AppCompatActivity {
     private Weather willweather = Weather.none;
     private int temp = 0;
     private int chlorophyll;
+    private int tide_low;
+    private int tide_high;
     private Boolean rain_alert = null;
     private TextView location_name;
     private TextView weather_header;
@@ -64,6 +66,7 @@ public class InfoActivity extends AppCompatActivity {
     private TextView uv_info;
     private TextView about;
     private TextView sunburn_info;
+    private TextView tide_info;
 
     private ImageView share;
     private ImageView weather_icon;
@@ -95,6 +98,7 @@ public class InfoActivity extends AppCompatActivity {
         weather_value = (TextView) findViewById(R.id.weather_value);
         chlorophyll_text = (TextView) findViewById(R.id.chlorophyll_text);
         sunburn_info = (TextView) findViewById(R.id.sunburn_info);
+        tide_info = (TextView) findViewById(R.id.tide_info);
         uv_info = (TextView) findViewById(R.id.uv_info);
         uv_info.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,6 +165,8 @@ public class InfoActivity extends AppCompatActivity {
                                     temp = jsonObject.getInt("temp");
                                     wx_phrase = jsonObject.getString("wx_phrase");
                                     chlorophyll = jsonObject.getInt("Chlorophyll");
+                                    tide_low = jsonObject.getInt("Low");
+                                    tide_high = jsonObject.getInt("High");
                                     updateData();
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -346,6 +352,24 @@ public class InfoActivity extends AppCompatActivity {
                 weather_value.setVisibility(View.GONE);
                 weather_header.setVisibility(View.GONE);
                 break;
+        }
+
+        long diff, diff_hour, diff_min;
+        if (tide_low > tide_high) {
+            diff = tide_low - new GregorianCalendar().getTimeInMillis() / 1000;
+            diff_hour = (int) (diff / (60*60));
+            diff_min = (int) (diff - (60*60*diff_hour)) / (60);
+            tide_info.setText("離退潮還有" + diff_hour + "時" + diff_min + "分");
+        } else {
+            diff = tide_high - new GregorianCalendar().getTimeInMillis() / 1000;
+            diff_hour = (int) (diff / (60*60));
+            diff_min = (int) (diff - (60*60*diff_hour)) / (60);
+
+            tide_info.setText("離漲潮還有" + diff_hour + "時" + diff_min + "分");
+        }
+
+        if (Math.abs(tide_high - new GregorianCalendar().getTimeInMillis() / 1000) < 3600) {
+            go_beach.setText(R.string.veryhigh);
         }
     }
 
