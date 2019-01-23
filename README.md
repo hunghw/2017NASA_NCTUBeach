@@ -9,6 +9,6 @@ Challenges: Let's go to the Beach!
 ### **[Demo Video](https://hwhung0111.github.io/2017NASA_NCTUBeach/)**
 
 Reference:
-[2017 NASA HACKATHON](http://spaceappstaiwan.weebly.com/)
-Challenges: [Let's go to the Beach!](https://2017.spaceappschallenge.org/challenges/earth-and-us/lets-go-beach/details)
-Our team: [NCTUBEACH](https://2017.spaceappschallenge.org/challenges/earth-and-us/lets-go-beach/teams/nctubeach/project)
+- [2017 NASA HACKATHON](http://spaceappstaiwan.weebly.com/)
+- Challenges: [Let's go to the Beach!](https://2017.spaceappschallenge.org/challenges/earth-and-us/lets-go-beach/details)
+- Our team: [NCTUBEACH](https://2017.spaceappschallenge.org/challenges/earth-and-us/lets-go-beach/teams/nctubeach/project)
