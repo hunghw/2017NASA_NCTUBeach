@@ -22,7 +22,7 @@
         android:id="@+id/textView21"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Author:\nServer: hwhung0111\nApp: zankio\nData: Lee Chi Ming" />
+        android:text="Author:\nServer: hunghw\nApp: zankio\nData: Lee Chi Ming" />
 
     <TextView
         android:id="@+id/textView19"
